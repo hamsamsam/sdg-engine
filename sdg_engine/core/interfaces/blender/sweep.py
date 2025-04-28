@@ -1,5 +1,5 @@
-from blender_sdg.core.model import Sweep, Snapshot
-from blender_sdg.config import SweepConfig
+from sdg_engine.core.model import Sweep, Snapshot
+from sdg_engine.config import SweepConfig
 from itertools import product
 from typing import List
 

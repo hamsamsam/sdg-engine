@@ -1,10 +1,10 @@
-from blender_sdg.core.interfaces.blender.scene import BlenderScene
-from blender_sdg.core.interfaces.blender.sweep import BlenderSweep
-from blender_sdg.core.interfaces.blender.object import BlenderElement
-from blender_sdg.config import RenderingConfig
-from blender_sdg.core.interfaces.blender import utils
+from sdg_engine.core.interfaces.blender.scene import BlenderScene
+from sdg_engine.core.interfaces.blender.sweep import BlenderSweep
+from sdg_engine.core.interfaces.blender.object import BlenderElement
+from sdg_engine.config import RenderingConfig
+from sdg_engine.core.interfaces.blender import utils
 
-from blender_sdg.core.model import Dataset, Annotation, SnapshotAnnotation
+from sdg_engine.core.model import Dataset, Annotation, SnapshotAnnotation
 
 import bpy
 from tqdm import tqdm
@@ -13,6 +13,7 @@ import uuid
 import warnings
 import numpy as np
 
+METADATA_FILENAME = "metadata.jsonl"
 
 class BlenderRenderer:
     """Interface for Blender rendering."""
@@ -110,15 +111,16 @@ def generate_dataset_from_config(config: RenderingConfig) -> Dataset:
     sweep: BlenderSweep = BlenderSweep.from_sweep_config(config.sweep_config)
 
     # Initialize the renderer
+    split_path = f"{config.target_path}/{config.split}"
     renderer: BlenderRenderer = BlenderRenderer.from_scene(
         scene,
-        config.target_path,
+        split_path,
         config.resolution,
         config.samples,
     )
 
     # Initialize the dataset
-    dataset: Dataset = Dataset(path=config.target_path, annotations=[])
+    dataset: Dataset = Dataset(path=split_path, annotations=[])
 
     # Collect the dataset annotations
     for snapshot in tqdm(sweep.snapshots, desc="Rendering snapshots"):
@@ -134,11 +136,20 @@ def generate_dataset_from_config(config: RenderingConfig) -> Dataset:
         )
         if config.debug:
             utils.draw_bounding_box_with_category(
-                target_path=config.target_path,
+                target_path=split_path,
                 annotation=annotation,
                 snapshot=snapshot,
             )
 
         dataset.annotations.append(annotation)
+
+    # Render the annotation animation
+    if config.debug:
+        utils.render_annotation_animation(split_path, dataset)
+
+    # Save the dataset to the target path as a JSONL file
+    with open(f"{split_path}/{METADATA_FILENAME}", "w") as f:
+        for annotation in dataset.annotations:
+            f.write(annotation.model_dump_json() + "\n")
 
     return dataset

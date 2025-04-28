@@ -1,10 +1,10 @@
 import pytest
-from blender_sdg.core.interfaces.blender.scene import BlenderScene
-from blender_sdg.core.model import Snapshot
-from blender_sdg.config.config import config_from_yaml, RenderingConfig
+from sdg_engine.core.interfaces.blender.scene import BlenderScene
+from sdg_engine.core.model import Snapshot
+from sdg_engine.config.config import config_from_yaml, RenderingConfig
 import yaml
 
-from blender_sdg.core.model import Element
+from sdg_engine.core.model import Element
 
 TEST_SCENE_PATH = "tests/core/interfaces/blender/basic-scene.blend"
 CONFIG_PATH = "tests/config/test.config.yaml"

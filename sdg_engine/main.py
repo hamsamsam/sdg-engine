@@ -1,5 +1,4 @@
-from blender_sdg.config import RenderingConfig, SupportedEngines, config_from_yaml
-from blender_sdg.core.model import Dataset
+from sdg_engine.config import RenderingConfig, SupportedEngines, config_from_yaml
 
 import os
 
@@ -17,14 +16,10 @@ def generate_dataset(config: RenderingConfig):
         )
 
     # Import the renderer and generate the dataset
-    import blender_sdg.core.interfaces.blender.render as renderer
+    import sdg_engine.core.interfaces.blender.render as renderer
 
-    dataset: Dataset = renderer.generate_dataset_from_config(config)
+    return renderer.generate_dataset_from_config(config)
 
-    # Save the dataset to the target path as a JSONL file
-    with open(f"{config.target_path}/dataset.jsonl", "w") as f:
-        for annotation in dataset.annotations:
-            f.write(annotation.model_dump_json() + "\n")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 """Interface for Blender objects."""
 
 import bpy
-from blender_sdg.core.model import Element
+from sdg_engine.core.model import Element
 from typing import Tuple
 
 import math

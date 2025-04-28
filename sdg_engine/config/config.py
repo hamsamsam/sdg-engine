@@ -32,6 +32,7 @@ class RenderingConfig(BaseModel):
     resolution: Tuple[int, int]
     samples: int
     target_path: str
+    split: str
     engine: SupportedEngines
     scene_config: SceneConfig
     sweep_config: SweepConfig

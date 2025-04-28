@@ -2,6 +2,7 @@
 engine: blender
 target_path: dataset/train
 debug: true # Whether to draw the bounding boxes on the images
+split: train
 
 # Camera settings
 random_seed: 0

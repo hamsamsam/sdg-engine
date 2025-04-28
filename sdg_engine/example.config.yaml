@@ -1,7 +1,8 @@
 # General settings
 engine: blender
-target_path: dataset/train
+target_path: tyless-5-objects-example
 debug: true # Whether to draw the bounding boxes on the images
+split: train # choose between 'train', 'validation', 'test'
 
 # Camera settings
 random_seed: 0
@@ -28,9 +29,9 @@ scene_config:
 # Sweep settings
 sweep_config:
     name: example_sweep
-    step: 90
-    yaw_limits: [-180.0, 180.0]
-    roll_limits: [-180.0, 180.0]
+    step: 15
+    yaw_limits: [-90.0, 90.0]
+    roll_limits: [-90.0, 90.0]
     camera_height_limits: [1.0, 1.0]
     light_energy_limits: [1000.0, 1000.0]
     

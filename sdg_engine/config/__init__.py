@@ -1,4 +1,4 @@
-from blender_sdg.config.config import (
+from sdg_engine.config.config import (
     config_from_yaml,
     RenderingConfig,
     SceneConfig,

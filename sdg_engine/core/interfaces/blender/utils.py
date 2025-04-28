@@ -1,6 +1,6 @@
-from blender_sdg.core.interfaces.blender.object import BlenderElement
-from blender_sdg.core.interfaces.blender.scene import BlenderScene
-from blender_sdg.core.model import Annotation, Snapshot
+from sdg_engine.core.interfaces.blender.object import BlenderElement
+from sdg_engine.core.interfaces.blender.scene import BlenderScene
+from sdg_engine.core.model import Annotation, Snapshot, Dataset
 from typing import List, Tuple, Optional
 import numpy as np
 import bpy
@@ -257,3 +257,38 @@ def draw_bounding_box_with_category(
     image.save(
         f"{target_path}/{annotation.file_name.replace('.png', '')}_annotated.png"
     )
+
+
+def render_annotation_animation(target_path: str, dataset: Dataset) -> None:
+    """
+    Creates an animation GIF from all annotated images in the dataset.
+
+    Parameters:
+    -----------
+    target_path: str
+        The path where the annotated images are stored.
+    dataset: Dataset
+        The dataset containing the annotations.
+    """
+    # Get all annotated image paths
+    image_paths = [
+        f"{target_path}/{annotation.file_name.replace('.png', '')}_annotated.png"
+        for annotation in dataset.annotations
+    ]
+    
+    # Open all images
+    images = [Image.open(path) for path in image_paths]
+    
+    # Save as GIF
+    output_path = f"{target_path}/annotation_animation.gif"
+    images[0].save(
+        output_path,
+        save_all=True,
+        append_images=images[1:],
+        duration=500,  # 500ms per frame
+        loop=0  # Loop indefinitely
+    )
+    
+    # Close all images
+    for img in images:
+        img.close()

@@ -1,9 +1,9 @@
 """Blender scene interface for the SDG."""
 
 import bpy
-from blender_sdg.core.model import Scene, Snapshot
-from blender_sdg.config import SceneConfig
-from blender_sdg.core.interfaces.blender.object import BlenderElement, BlenderLight
+from sdg_engine.core.model import Scene, Snapshot
+from sdg_engine.config import SceneConfig
+from sdg_engine.core.interfaces.blender.object import BlenderElement, BlenderLight
 
 from warnings import warn
 from typing import List
