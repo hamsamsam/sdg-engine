@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+.python-version
 
 # C extensions
 *.so
@@ -20,9 +21,18 @@ dist/
 env/
 venv/
 
+# Poetry
+poetry.lock
+
 # Jupyter Notebook
 .ipynb_checkpoints
 
 # VSCode
 .vscode/
 .vscode/launch.json
+
+# Cursor
+.cursor
+
+# Data
+dataset/

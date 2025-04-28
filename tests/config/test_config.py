@@ -1,6 +1,6 @@
 import yaml
-from blender_sdg.config.config import config_from_yaml, RenderingConfig
-from blender_sdg.config.config import SweepConfig
+from sdg_engine.config.config import config_from_yaml, RenderingConfig
+from sdg_engine.config.config import SweepConfig
 import pytest
 
 
