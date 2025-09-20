@@ -16,6 +16,7 @@ class SceneConfig(BaseModel):
     axis_names: List[str]
     element_names: List[str]
     light_names: List[str]
+    collection_name: str
 
 
 class SweepConfig(BaseModel):

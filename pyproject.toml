@@ -12,7 +12,7 @@ bpy = "^4.2.0"
 tqdm = "^4.66.5"
 pyyaml = "^6.0.2"
 mathutils = "^3.3.0"
-numpy = "^2.2.1"
+numpy = "1.26.4"
 datasets = "^3.5.0"
 
 [tool.poetry.group.dev.dependencies]
