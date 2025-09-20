@@ -11,27 +11,27 @@ samples: 64
 
 # Scene settings
 scene_config:
-  scene_path: core/interfaces/blender/scenes/tyless-5-objects.blend
+  # name of file
+  scene_path: core/interfaces/blender/scenes/cube-environment.blend
   scene_name: Scene
   camera_names:
     - Camera
   axis_names:
     - Axis
   element_names:
-    - obj_01
-    - obj_02
-    - obj_03
-    - obj_04
-    - obj_05
+    - Cube
   light_names:
     - Light
 
+# data generation settings
+max_objects: 5 #max number of objects generated
+random_colour: false #randomise colour of object
+
 # Sweep settings
 sweep_config:
-    name: example_sweep
-    step: 15
-    yaw_limits: [-90.0, 90.0]
-    roll_limits: [-90.0, 90.0]
-    camera_height_limits: [1.0, 1.0]
-    light_energy_limits: [1000.0, 1000.0]
-    
+  name: example_sweep
+  step: 15
+  yaw_limits: [-90.0, 90.0]
+  roll_limits: [-90.0, 90.0]
+  camera_height_limits: [1.0, 1.0]
+  light_energy_limits: [1000.0, 1000.0]
